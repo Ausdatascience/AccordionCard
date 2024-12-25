@@ -1,5 +1,6 @@
 {
-  "name": "web_test",
+  "name": "flipflow",
+  "description": "FlipFlow - 一个优雅的折叠卡片组件",
   "version": "0.1.0",
   "private": true,
   "scripts": {

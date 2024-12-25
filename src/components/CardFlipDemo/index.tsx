@@ -102,12 +102,11 @@ const CardFlipDemo = () => {
       i === index ? { ...card, [field]: value } : card
     ));
   };
-
+  
   return (
     <div className="w-full">
       {/* 标题区域：展示组件名称 */}
-      <h1 className="text-3xl font-bold text-center my-8">开合卡片演示</h1>
-      
+        
       {/* 预设选择区域：快速切换不同配置 */}
       <div className="flex justify-center gap-4 mb-6">
         <button 

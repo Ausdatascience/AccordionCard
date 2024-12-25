@@ -4,6 +4,10 @@ import React, { useState, useEffect } from 'react';
 import './CardFlip.css';
 import { CardFlipProps } from './types';
 
+/**
+ * FlipFlow 折叠卡片组件
+ * 一个优雅的、可自定义的折叠卡片组件
+ */
 const CardFlip: React.FC<CardFlipProps> = ({ 
     cards = [], 
     containerWidth = '60%',
