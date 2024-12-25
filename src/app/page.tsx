@@ -1,101 +1,139 @@
-import Image from "next/image";
+import CardFlip from '../components/CardFlip';
+import CardFlipDemo from '../components/CardFlipDemo';
+
+// 第一组卡片数据 - 4个卡片，用于展示长文本内容
+const demoCards = [
+  {
+    title: "示例卡片 1",
+    details: "这是第一张卡片的详细内容这是第一张卡片的详细内容这是第一张卡片的详细内容这是第一张卡片的详细内容这是第一张卡片的详细内容这是第一张卡片的详细内容这是第一张卡片的详细内容这是第一张卡片的详细内容这是第一张卡片的详细内容这是第一张卡片的详细内容这是第一张卡片的详细内容这是第一张卡片的详细内容这是第一张卡片的详细内容"
+  },
+  {
+    title: "示例卡片 2",
+    details: "这是第二张卡片的详细内容这是第一张卡片的详细内容这是第一张卡片的详细内容这是第一张卡片的详细内容"
+  },
+  {
+    title: "示例卡片 3",
+    details: "这是第三张卡片的详细内容"
+  },
+  {
+    title: "示例卡片 4",
+    details: "这是第四张卡片的详细内容"
+  }
+];
+
+// 第二组卡片数据 - 5个卡片，简短内容展示
+const secondCards = [
+  {
+    title: "卡片 1",
+    details: "内容 1"
+  },
+  {
+    title: "卡片 2",
+    details: "内容 2"
+  },
+  {
+    title: "卡片 3",
+    details: "内容 3"
+  },
+  {
+    title: "卡片 4",
+    details: "内容 4"
+  },
+  {
+    title: "卡片 5",
+    details: "内容 5"
+  }
+];
+
+// 第三组卡片数据 - 6个卡片，项目展示
+const thirdCards = [
+  {
+    title: "项目 1",
+    details: "项目描述 1"
+  },
+  {
+    title: "项目 2",
+    details: "项目描述 2"
+  },
+  {
+    title: "项目 3",
+    details: "项目描述 3"
+  },
+  {
+    title: "项目 4",
+    details: "项目描述 4"
+  },
+  {
+    title: "项目 5",
+    details: "项目描述 5"
+  },
+  {
+    title: "项目 6",
+    details: "项目描述 6"
+  }
+];
 
 export default function Home() {
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+    <div className="min-h-screen">
+      {/* 添加演示组件 */}
+      <div className="w-[90%] max-w-[1920px] mx-auto">
+        <CardFlipDemo />
+      </div>
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+      {/* 第一组卡片 - 较宽的内容区域(450px)适合长文本 */}
+      <div className="w-[90%] max-w-[1920px] mx-auto">
+        <h2 className="text-2xl font-bold text-center my-8">第一组卡片</h2>
+        <div className="container mb-12">
+          <CardFlip 
+            cards={demoCards}
+            containerWidth="90%"      // 容器宽度
+            cardColor="#76B900"       // 卡片背景色
+            buttonColor="#007bff"     // 按钮颜色
+            cardHeight={200}          // 卡片高度
+            animationDuration={0.8}   // 动画持续时间
+            detailWidth={300}         // 内容区域宽度
+            collapsedWidth={10}       // 收缩后的宽度(15%)
+            className="first-cards"
+          />
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
+      </div>
+      
+      {/* 第二组卡片 - 较窄的内容区域(350px)适合简短内容 */}
+      <div className="w-[80%] max-w-[1600px] mx-auto">  {/* 不同的宽度设置 */}
+        <h2 className="text-2xl font-bold text-center my-8">第二组卡片</h2>
+        <div className="container mb-12">
+          <CardFlip 
+            cards={secondCards}
+            containerWidth="90%"
+            cardColor="#2563eb"
+            buttonColor="#dc2626"
+            cardHeight={200}
+            animationDuration={0.8}
+            detailWidth={300}         // 较窄的内容区域
+            collapsedWidth={10}       // 收缩后的宽度(10%)
+            className="second-cards"
           />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
+        </div>
+      </div>
+
+      {/* 第三组卡片 - 较窄的内容区域(300px)适合简短内容 */}
+      <div className="w-[70%] max-w-[1400px] mx-auto">  {/* 更窄的宽度设置 */}
+        <h2 className="text-2xl font-bold text-center my-8">第三组卡片</h2>
+        <div className="container mb-12">
+          <CardFlip 
+            cards={thirdCards}
+            containerWidth="90%"
+            cardColor="#059669"
+            buttonColor="#f59e0b"
+            cardHeight={200}
+            animationDuration={0.7}
+            detailWidth={250}         // 较窄的内容区域
+            collapsedWidth={8}        // 收缩后的宽度(8%)
+            className="third-cards"
           />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+        </div>
+      </div>
     </div>
   );
 }
