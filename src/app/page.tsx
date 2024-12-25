@@ -1,23 +1,16 @@
 import CardFlip from '../components/CardFlip';
 import CardFlipDemo from '../components/CardFlipDemo';
+import { Card } from '@/components/CardFlip/types';
 
-// 第一组卡片数据 - 4个卡片，用于展示长文本内容
-const demoCards = [
+// 定义演示卡片数据
+const demoCards: Card[] = [
   {
-    title: "示例卡片 1",
-    details: "这是第一张卡片的详细内容这是第一张卡片的详细内容这是第一张卡片的详细内容这是第一张卡片的详细内容这是第一张卡片的详细内容这是第一张卡片的详细内容这是第一张卡片的详细内容这是第一张卡片的详细内容这是第一张卡片的详细内容这是第一张卡片的详细内容这是第一张卡片的详细内容这是第一张卡片的详细内容这是第一张卡片的详细内容"
+    title: "演示卡片 1",
+    details: "这是一段演示文本，用于展示卡片内容的显示效果。"
   },
   {
-    title: "示例卡片 2",
-    details: "这是第二张卡片的详细内容这是第一张卡片的详细内容这是第一张卡片的详细内容这是第一张卡片的详细内容"
-  },
-  {
-    title: "示例卡片 3",
-    details: "这是第三张卡片的详细内容"
-  },
-  {
-    title: "示例卡片 4",
-    details: "这是第四张卡片的详细内容"
+    title: "演示卡片 2",
+    details: "这是第二张卡片的演示文本。"
   }
 ];
 

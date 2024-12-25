@@ -1,10 +1,10 @@
 "use client";
 
 import React, { useState, useEffect } from 'react';
-import PropTypes from 'prop-types';
 import './CardFlip.css';
+import { CardFlipProps } from './types';
 
-const CardFlip = ({ 
+const CardFlip: React.FC<CardFlipProps> = ({ 
     cards = [], 
     containerWidth = '60%',
     cardColor = '#76B900',
@@ -17,18 +17,17 @@ const CardFlip = ({
     detailTextColor = '#000000',
     className = ''
 }) => {
-    const [activeCard, setActiveCard] = useState(null);
+    const [activeCard, setActiveCard] = useState<number | null>(null);
     const [isMobile, setIsMobile] = useState(false);
 
     // 计算卡片宽度
     const cardCount = cards.length;
     const normalWidth = `calc(${100/cardCount}% - ${15*(cardCount-1)/cardCount}px)`; 
-    const activeWidth = normalWidth; 
+    const activeWidth = normalWidth;
 
     // 计算最大行数，减1行以确保显示更合适
     const maxLines = Math.floor((cardHeight - 40) / (16 * 1.5)) - 1;
 
-    // 添加响应式监听
     useEffect(() => {
         const checkMobile = () => {
             setIsMobile(window.innerWidth <= 768);
@@ -40,7 +39,7 @@ const CardFlip = ({
         return () => window.removeEventListener('resize', checkMobile);
     }, []);
 
-    const handleButtonClick = (index) => {
+    const handleButtonClick = (index: number) => {
         setActiveCard(index === activeCard ? null : index);
     };
 
@@ -60,7 +59,7 @@ const CardFlip = ({
         '--max-lines': maxLines,
         '--card-text-color': cardTextColor,
         '--detail-text-color': detailTextColor
-    };
+    } as React.CSSProperties;
 
     return (
         <div className={`card-container ${className}`} style={containerStyle}>
@@ -86,33 +85,6 @@ const CardFlip = ({
             ))}
         </div>
     );
-};
-
-CardFlip.propTypes = {
-    // 卡片数据数组
-    cards: PropTypes.arrayOf(PropTypes.shape({
-        title: PropTypes.string.isRequired,
-        details: PropTypes.string.isRequired
-    })),
-    // 容器宽度
-    containerWidth: PropTypes.oneOfType([
-        PropTypes.number,
-        PropTypes.string
-    ]),
-    // 卡片颜色
-    cardColor: PropTypes.string,
-    // 按钮颜色
-    buttonColor: PropTypes.string,
-    // 卡片高度
-    cardHeight: PropTypes.number,
-    // 动画持续时间
-    animationDuration: PropTypes.number,
-    detailWidth: PropTypes.number,
-    collapsedWidth: PropTypes.number,
-    // 额外的CSS类名
-    className: PropTypes.string,
-    cardTextColor: PropTypes.string,
-    detailTextColor: PropTypes.string
 };
 
 export default CardFlip; 

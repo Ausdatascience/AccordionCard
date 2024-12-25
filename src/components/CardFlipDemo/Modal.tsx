@@ -21,7 +21,7 @@ const Modal = ({ isOpen, onClose, children, content }: ModalProps) => {
       await navigator.clipboard.writeText(content);
       setCopyStatus('已复制！');
       setTimeout(() => setCopyStatus(''), 2000);
-    } catch (err) {
+    } catch {
       setCopyStatus('复制失败');
       setTimeout(() => setCopyStatus(''), 2000);
     }
