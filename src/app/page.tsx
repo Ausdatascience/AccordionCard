@@ -1,6 +1,5 @@
-import CardFlip from '../components/CardFlip';
 import CardFlipDemo from '../components/CardFlipDemo';
-import { Card } from '@/components/CardFlip/types';
+
 export default function Home() {
   return (
     <div className="min-h-screen flex flex-col">

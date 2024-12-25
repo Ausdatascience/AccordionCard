@@ -9,6 +9,7 @@ interface Settings {
   animationDuration: number;
   cardTextColor: string;
   detailTextColor: string;
+  cardWidth: number;
 }
 
 interface Card {
@@ -30,6 +31,7 @@ const CardFlip = ({
   cardColor = '#76B900',
   buttonColor = '#007bff',
   cardHeight = 300,
+  cardWidth = 200,
   animationDuration = 1,
   detailWidth = 200,
   collapsedWidth = 10,
@@ -109,6 +111,7 @@ export default function Demo() {
       cardColor="${settings.cardColor}"
       buttonColor="${settings.buttonColor}"
       cardHeight={${settings.cardHeight}}
+      cardWidth={${settings.cardWidth}}
       animationDuration={${settings.animationDuration}}
       detailWidth={${settings.detailWidth}}
       collapsedWidth={${settings.collapsedWidth}}

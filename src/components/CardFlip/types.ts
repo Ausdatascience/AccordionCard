@@ -9,6 +9,7 @@ export interface CardFlipProps {
   cardColor?: string;
   buttonColor?: string;
   cardHeight?: number;
+  cardWidth?: number;
   animationDuration?: number;
   detailWidth?: number;
   collapsedWidth?: number;

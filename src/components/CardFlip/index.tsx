@@ -14,6 +14,7 @@ const CardFlip: React.FC<CardFlipProps> = ({
     cardColor = '#76B900',
     buttonColor = '#007bff',
     cardHeight = 300,
+    cardWidth,
     animationDuration = 1,
     detailWidth = 200,
     collapsedWidth = 10,
@@ -26,7 +27,8 @@ const CardFlip: React.FC<CardFlipProps> = ({
 
     // 计算卡片宽度
     const cardCount = cards.length;
-    const normalWidth = `calc(${100/cardCount}% - ${15*(cardCount-1)/cardCount}px)`; 
+    const calculatedWidth = `calc(${100/cardCount}% - ${15*(cardCount-1)/cardCount}px)`;
+    const normalWidth = cardWidth ? `${cardWidth}px` : calculatedWidth;
     const activeWidth = normalWidth;
 
     // 计算最大行数，减1行以确保显示更合适

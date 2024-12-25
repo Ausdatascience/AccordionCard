@@ -5,8 +5,33 @@ import CardFlip from '../CardFlip';
 import { generateFullCode } from './codeGenerator';
 import Modal from './Modal';
 
-// 预设配置：定义不同场景下的默认参数组合
-const presets = {
+// 预设类型定义
+interface PresetSettings {
+  cardCount: number;
+  containerWidth: number;
+  cardHeight: number;
+  detailWidth: number;
+  collapsedWidth: number;
+  cardColor: string;
+  buttonColor: string;
+  animationDuration: number;
+  cardTextColor: string;
+  detailTextColor: string;
+  cardWidth: number;
+}
+
+// 计算默认卡片宽度的函数
+const calculateDefaultWidth = (cardCount: number, containerWidth: number) => {
+  // 容器宽度（px） = 父容器宽度 * 容器宽度百分比
+  const assumedContainerWidth = 1200 * (containerWidth / 100);
+  // 考虑间距的实际可用宽度
+  const totalGapWidth = 15 * (cardCount - 1);
+  // 每张卡片的宽度
+  return Math.floor((assumedContainerWidth - totalGapWidth) / cardCount);
+};
+
+// 基础预设配置
+const basePresets = {
   // 默认预设：标准布局
   default: {
     cardCount: 4,         // 添加卡片数量
@@ -46,7 +71,16 @@ const presets = {
     cardTextColor: '#ffffff',
     detailTextColor: '#000000'
   }
-};
+} as const;
+
+// 为每个预设计算默认卡片宽度并创建完整的预设
+const presets: Record<string, PresetSettings> = Object.entries(basePresets).reduce((acc, [key, preset]) => {
+  acc[key] = {
+    ...preset,
+    cardWidth: calculateDefaultWidth(preset.cardCount, preset.containerWidth)
+  };
+  return acc;
+}, {} as Record<string, PresetSettings>);
 
 // 生成演示卡片数据
 const generateDemoCards = (count: number) => {
@@ -72,10 +106,23 @@ const CardFlipDemo = () => {
 
   // 处理参数变化：更新单个参数值
   const handleSettingChange = (key: string, value: number | string) => {
-    setSettings(prev => ({
-      ...prev,
-      [key]: value
-    }));
+    setSettings(prev => {
+      const newSettings = {
+        ...prev,
+        [key]: value
+      };
+      
+      // 只在改变卡片数量或容器宽度时重新计算默认卡片宽度
+      if (key === 'cardCount' || key === 'containerWidth') {
+        // 更新卡���宽度为新计算的默认值
+        newSettings.cardWidth = calculateDefaultWidth(
+          newSettings.cardCount, 
+          newSettings.containerWidth
+        );
+      }
+      
+      return newSettings;
+    });
     
     // 如果更改的是卡片数量，则重生成演示卡片
     if (key === 'cardCount') {
@@ -140,6 +187,7 @@ const CardFlipDemo = () => {
           cardColor={settings.cardColor}
           buttonColor={settings.buttonColor}
           cardHeight={settings.cardHeight}
+          cardWidth={settings.cardWidth}
           animationDuration={settings.animationDuration}
           detailWidth={settings.detailWidth}
           collapsedWidth={settings.collapsedWidth}
@@ -248,6 +296,20 @@ const CardFlipDemo = () => {
                 step="0.1"
                 value={settings.animationDuration}
                 onChange={(e) => handleSettingChange('animationDuration', Number(e.target.value))}
+                className="w-full"
+              />
+            </div>
+
+            <div className="space-y-2 w-[calc(50%-8px)] md:w-[calc(33.333%-11px)] lg:w-[calc(25%-12px)]">
+              <label className="block text-sm font-medium text-gray-700">
+                卡片宽度 ({settings.cardWidth}px)
+              </label>
+              <input 
+                type="range" 
+                min={Math.max(100, Math.floor(calculateDefaultWidth(settings.cardCount, settings.containerWidth) * 0.5))}
+                max={Math.floor(calculateDefaultWidth(settings.cardCount, settings.containerWidth) * 1.5)}
+                value={settings.cardWidth}
+                onChange={(e) => handleSettingChange('cardWidth', Number(e.target.value))}
                 className="w-full"
               />
             </div>
