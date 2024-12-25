@@ -1,4 +1,4 @@
-import CardFlipDemo from '../components/CardFlipDemo';
+import AccordionCardDemo from '../components/AccordionCardDemo';
 
 export default function Home() {
   return (
@@ -6,8 +6,8 @@ export default function Home() {
       {/* 主要内容区域 */}
       <div className="flex-grow">
         <div className="w-[90%] max-w-[1920px] mx-auto">
-          <h1 className="text-3xl font-bold text-center my-8">FlipFlow 折叠卡片</h1>
-          <CardFlipDemo />
+          <h1 className="text-3xl font-bold text-center my-8">AccordionCard 手风琴卡片</h1>
+          <AccordionCardDemo />
         </div>
       </div>
 

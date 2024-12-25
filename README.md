@@ -1,11 +1,11 @@
-# FlipFlow 折叠卡片 | Folding Card Component
+# AccordionCard 手风琴卡片 | Folding Card Component
 
 [English](#english) | [中文](#中文)
 
 ## English
 
 ### Introduction
-FlipFlow is an elegant, customizable React folding card component. It provides smooth animations and rich customization options, making it perfect for creating interactive content displays.
+AccordionCard is an elegant, customizable React folding card component. It provides smooth animations and rich customization options, making it perfect for creating interactive content displays.
 
 ### Features
 - 🎨 Fully customizable styles
@@ -19,8 +19,8 @@ FlipFlow is an elegant, customizable React folding card component. It provides s
 
 1. Clone the repository:
 ```bash
-git clone https://github.com/Ausdatascience/flipflow.git
-cd flipflow
+git clone https://github.com/Ausdatascience/AccordionCard.git
+cd AccordionCard
 ```
 
 2. Install dependencies:
@@ -43,7 +43,7 @@ npm run start
 
 ### Basic Usage
 ```tsx
-import { CardFlip } from 'flipflow';
+import { CardFlip } from 'AccordionCard';
 
 // Define card data
 const cards = [
@@ -81,7 +81,7 @@ function App() {
 ```
 
 ### Documentation
-For detailed documentation and examples, please visit our [demo page](https://flipflow.vercel.app).
+For detailed documentation and examples, please visit our [demo page](https://AccordionCard.vercel.app).
 
 ### License
 MIT License
@@ -91,7 +91,7 @@ MIT License
 ## 中文
 
 ### 简介
-FlipFlow 是一个优雅、可自定义的 React 折叠卡片组件。它提供流畅的动画效果和丰富的自定义选项，非常适合创建交互式内容展示。
+AccordionCard 是一个优雅、可自定义的 React 手风琴卡片组件。它提供流畅的动画效果和丰富的自定义选项，非常适合创建交互式内容展示。
 
 ### 特性
 - 🎨 完全可自定义样式
@@ -105,8 +105,8 @@ FlipFlow 是一个优雅、可自定义的 React 折叠卡片组件。它提供�
 
 1. 克隆仓库：
 ```bash
-git clone https://github.com/Ausdatascience/flipflow.git
-cd flipflow
+git clone https://github.com/Ausdatascience/AccordionCard.git
+cd AccordionCard
 ```
 
 2. 安装依赖：
@@ -129,7 +129,7 @@ npm run start
 
 ### 基础用法
 ```tsx
-import { CardFlip } from 'flipflow';
+import { CardFlip } from 'AccordionCard';
 
 // 定义卡片数据
 const cards = [
@@ -167,7 +167,7 @@ function App() {
 ```
 
 ### 文档
-详细文档和示例请访问我们的[演示页面](https://flipflow.vercel.app/)。
+详细文档和示例请访问我们的[演示页面](https://AccordionCard.vercel.app/)。
 
 ### 许可证
 MIT License

@@ -12,8 +12,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata = {
-  title: 'FlipFlow 折叠卡片',
-  description: 'FlipFlow - 一个优雅的折叠卡片组件',
+  title: 'AccordionCard 手风琴卡片',
+  description: 'AccordionCard - 一个优雅的手风琴卡片组件',
 };
 
 export default function RootLayout({

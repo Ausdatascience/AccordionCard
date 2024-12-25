@@ -5,8 +5,8 @@ import './CardFlip.css';
 import { CardFlipProps } from './types';
 
 /**
- * FlipFlow 折叠卡片组件
- * 一个优雅的、可自定义的折叠卡片组件
+ * AccordionCard 手风琴卡片组件
+ * 一个优雅的、可自定义的手风琴卡片组件
  */
 const CardFlip: React.FC<CardFlipProps> = ({ 
     cards = [], 

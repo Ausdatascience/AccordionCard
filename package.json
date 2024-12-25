@@ -1,6 +1,6 @@
 {
-  "name": "flipflow",
-  "description": "FlipFlow - 一个优雅的折叠卡片组件",
+  "name": "AccordionCard",
+  "description": "AccordionCard - 一个优雅的手风琴卡片组件",
   "version": "0.1.0",
   "private": true,
   "scripts": {
