@@ -58,6 +58,12 @@ const generateDemoCards = (count: number) => {
   }));
 };
 
+// 首先添加一个编辑卡片内容的接口
+interface CardContent {
+  title: string;
+  details: string;
+}
+
 const CardFlipDemo = () => {
   // 状态管理
   const [settings, setSettings] = useState(presets.default);  // 当前参数设置
@@ -71,7 +77,7 @@ const CardFlipDemo = () => {
       [key]: value
     }));
     
-    // 如果更改的是卡片数量，则重�����生成演示卡片
+    // 如果更改的是卡片数量，则重生成演示卡片
     if (key === 'cardCount') {
       setDemoCards(generateDemoCards(Number(value)));
     }
@@ -87,7 +93,14 @@ const CardFlipDemo = () => {
 
   // 生成示例代码：用于展示完整的、可运行的代码
   const generateCode = () => {
-    return generateFullCode(settings);
+    return generateFullCode(settings, demoCards);
+  };
+
+  // 处理卡片内容更新
+  const handleCardContentChange = (index: number, field: keyof CardContent, value: string) => {
+    setDemoCards(prev => prev.map((card, i) => 
+      i === index ? { ...card, [field]: value } : card
+    ));
   };
 
   return (
@@ -150,7 +163,7 @@ const CardFlipDemo = () => {
           </button>
         </div>
 
-        {/* 参数调整网格：包含���有可调整的参数 */}
+        {/* 参数调整网格：包含所有可调整的参数 */}
         <div className="space-y-8">
           {/* 滑块控件部分 - 响应式布局 */}
           <div className="flex flex-wrap gap-4">
@@ -303,6 +316,51 @@ const CardFlipDemo = () => {
             <code>{generateCode()}</code>
           </pre>
         </Modal>
+      </div>
+
+      {/* 参数设置区域后添加内容编辑区域 */}
+      <div className="bg-gray-50 rounded-lg p-6 mb-8">
+        <div className="flex justify-between items-center mb-4">
+          <h3 className="text-xl font-semibold">内容设置</h3>
+        </div>
+
+        <div className="space-y-6">
+          {demoCards.map((card, index) => (
+            <div 
+              key={index}
+              className="p-4 border border-gray-200 rounded-lg space-y-4"
+            >
+              <div className="flex items-center gap-2">
+                <span className="font-medium min-w-[80px]">卡片 {index + 1}</span>
+                <div className="flex-1 space-y-4">
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-1">
+                      标题
+                    </label>
+                    <input 
+                      type="text"
+                      value={card.title}
+                      onChange={(e) => handleCardContentChange(index, 'title', e.target.value)}
+                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                      placeholder="输入卡片标题"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-1">
+                      内容
+                    </label>
+                    <textarea 
+                      value={card.details}
+                      onChange={(e) => handleCardContentChange(index, 'details', e.target.value)}
+                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 min-h-[100px]"
+                      placeholder="输入卡片内容"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );

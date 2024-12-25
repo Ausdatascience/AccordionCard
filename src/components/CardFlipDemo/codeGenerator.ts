@@ -11,10 +11,18 @@ interface Settings {
   detailTextColor: string;
 }
 
-export const generateComponentCode = (settings: Settings) => {
+interface Card {
+  title: string;
+  details: string;
+}
+
+export const generateComponentCode = (settings: Settings, cards: Card[]) => {
   return `// CardFlip.js
 import React, { useState, useEffect } from 'react';
 import './CardFlip.css';
+
+// 卡片数据
+const cards = ${JSON.stringify(cards, null, 2)};
 
 const CardFlip = ({ 
   cards = [], 
@@ -23,7 +31,7 @@ const CardFlip = ({
   buttonColor = '#007bff',
   cardHeight = 300,
   animationDuration = 1,
-  detailWidth = 450,
+  detailWidth = 200,
   collapsedWidth = 10,
   cardTextColor = '#ffffff',
   detailTextColor = '#000000',
@@ -93,18 +101,6 @@ const CardFlip = ({
   );
 };
 
-// 使用示例
-const cards = [
-  {
-    title: "示例卡片 1",
-    details: "这是第一张卡片的详细内容..."
-  },
-  {
-    title: "示例卡片 2",
-    details: "这是第二张卡片的详细内容..."
-  }
-];
-
 export default function Demo() {
   return (
     <CardFlip 
@@ -155,8 +151,8 @@ export const generateStyleCode = () => {
 /* 更多样式... */`;
 };
 
-export const generateFullCode = (settings: Settings) => {
-  return `${generateComponentCode(settings)}
+export const generateFullCode = (settings: Settings, cards: Card[]) => {
+  return `${generateComponentCode(settings, cards)}
 
 ${generateStyleCode()}`;
 }; 
