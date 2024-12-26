@@ -23,10 +23,23 @@ npm install react-accordion-core
 
 ### [react-accordion-dev](./packages/react-accordion-dev)
 
-开发工具包，提供实时预览、代码生成和多语言支持。
+开发和演示工具包，提供实时预览、代码生成和多语言支持。这是一个开发工具，不作为 npm 包发布。
+
+要运行演示：
 
 ```bash
-npm install react-accordion-dev
+# 克隆仓库
+git clone https://github.com/Ausdatascience/react-accordion.git
+
+# 进入项目目录
+cd react-accordion
+
+# 安装依赖
+npm install
+
+# 启动开发服务器
+cd packages/react-accordion-dev
+npm run dev
 ```
 
 ## 特性
