@@ -22,7 +22,7 @@ export const generateComponentCode = (settings: Settings, cards: Card[]) => {
 import React, { useState, useEffect } from 'react';
 import './CardFlip.css';
 
-// 卡片数据
+// Card data
 const cards = ${JSON.stringify(cards, null, 2)};
 
 const CardFlip = ({ 

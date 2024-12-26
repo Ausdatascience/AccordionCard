@@ -1,9 +1,10 @@
 "use client";
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import CardFlip from '../CardFlip';
 import { generateFullCode } from './codeGenerator';
 import Modal from './Modal';
+import { locales, Locale } from './locales';
 
 // 预设类型定义
 interface PresetSettings {
@@ -83,12 +84,13 @@ const presets: Record<string, PresetSettings> = Object.entries(basePresets).redu
 }, {} as Record<string, PresetSettings>);
 
 // 生成演示卡片数据
-const generateDemoCards = (count: number) => {
+const generateDemoCards = (count: number, locale: Locale) => {
+  const t = locales[locale];
   return Array.from({ length: count }, (_, index) => ({
-    title: `演示卡片 ${index + 1}`,
+    title: `${t.demoCards.title} ${index + 1}`,
     details: index === 0 
-      ? "这是一段演示文本，用于展示卡片内容的显示效果。可以包含较长的文本内容，测试多行文本的展示情况。"
-      : `这是第${index + 1}张卡片的演示文本，可以包含不同长度的内容。`
+      ? t.demoCards.details
+      : `${t.demoCards.title} ${index + 1} ${t.demoCards.details}`
   }));
 };
 
@@ -102,7 +104,10 @@ const CardFlipDemo = () => {
   // 状态管理
   const [settings, setSettings] = useState(presets.default);  // 当前参数设置
   const [isCodeModalOpen, setIsCodeModalOpen] = useState(false);
-  const [demoCards, setDemoCards] = useState(generateDemoCards(presets.default.cardCount));
+  const [locale, setLocale] = useState<Locale>('en');
+  const [demoCards, setDemoCards] = useState(generateDemoCards(presets.default.cardCount, locale));
+
+  const t = locales[locale];
 
   // 处理参数变化：更新单个参数值
   const handleSettingChange = (key: string, value: number | string) => {
@@ -114,7 +119,7 @@ const CardFlipDemo = () => {
       
       // 只在改变卡片数量或容器宽度时重新计算默认卡片宽度
       if (key === 'cardCount' || key === 'containerWidth') {
-        // 更新卡���宽度为新计算的默认值
+        // 更新卡片宽度为新计算的默认值
         newSettings.cardWidth = calculateDefaultWidth(
           newSettings.cardCount, 
           newSettings.containerWidth
@@ -126,7 +131,7 @@ const CardFlipDemo = () => {
     
     // 如果更改的是卡片数量，则重生成演示卡片
     if (key === 'cardCount') {
-      setDemoCards(generateDemoCards(Number(value)));
+      setDemoCards(generateDemoCards(Number(value), locale));
     }
   };
 
@@ -135,8 +140,13 @@ const CardFlipDemo = () => {
     const newSettings = presets[presetName];
     setSettings(newSettings);
     // 同时更新卡片数量
-    setDemoCards(generateDemoCards(newSettings.cardCount));
+    setDemoCards(generateDemoCards(newSettings.cardCount, locale));
   };
+
+  // 监听���言变化，更新卡片内容
+  useEffect(() => {
+    setDemoCards(generateDemoCards(settings.cardCount, locale));
+  }, [locale, settings.cardCount]);
 
   // 生成示例代码：用于展示完整的、可运行的代码
   const generateCode = () => {
@@ -152,6 +162,36 @@ const CardFlipDemo = () => {
   
   return (
     <div className="w-full">
+      {/* 语言切换按钮 */}
+      <div className="flex justify-end mb-4">
+        <div className="flex gap-2">
+          <button
+            onClick={() => setLocale('en')}
+            className={`px-4 py-2 rounded ${locale === 'en' ? 'bg-gray-600 text-white' : 'bg-gray-200 text-gray-700'}`}
+          >
+            English
+          </button>
+          <button
+            onClick={() => setLocale('zh')}
+            className={`px-4 py-2 rounded ${locale === 'zh' ? 'bg-gray-600 text-white' : 'bg-gray-200 text-gray-700'}`}
+          >
+            简体中文
+          </button>
+          <button
+            onClick={() => setLocale('zh-TW')}
+            className={`px-4 py-2 rounded ${locale === 'zh-TW' ? 'bg-gray-600 text-white' : 'bg-gray-200 text-gray-700'}`}
+          >
+            繁體中文
+          </button>
+          <button
+            onClick={() => setLocale('ja')}
+            className={`px-4 py-2 rounded ${locale === 'ja' ? 'bg-gray-600 text-white' : 'bg-gray-200 text-gray-700'}`}
+          >
+            日本語
+          </button>
+        </div>
+      </div>
+
       {/* 标题区域：展示组件名称 */}
         
       {/* 预设选择区域：快速切换不同配置 */}
@@ -161,21 +201,21 @@ const CardFlipDemo = () => {
           className={`px-4 py-2 text-white rounded hover:opacity-90`}
           style={{ backgroundColor: presets.default.cardColor }}
         >
-          默认预设
+          {t.presets.default}
         </button>
         <button 
           onClick={() => handlePresetChange('compact')}
           className={`px-4 py-2 text-white rounded hover:opacity-90`}
           style={{ backgroundColor: presets.compact.cardColor }}
         >
-          紧凑预设
+          {t.presets.compact}
         </button>
         <button 
           onClick={() => handlePresetChange('wide')}
           className={`px-4 py-2 text-white rounded hover:opacity-90`}
           style={{ backgroundColor: presets.wide.cardColor }}
         >
-          宽屏预设
+          {t.presets.wide}
         </button>
       </div>
       
@@ -201,12 +241,12 @@ const CardFlipDemo = () => {
       <div className="bg-gray-50 rounded-lg p-6 mb-8">
         {/* 参数设置标题和代码显示切换 */}
         <div className="flex justify-between items-center mb-4">
-          <h3 className="text-xl font-semibold">参数设置</h3>
+          <h3 className="text-xl font-semibold">{t.settings.title}</h3>
           <button 
             onClick={() => setIsCodeModalOpen(true)}
             className="px-4 py-2 bg-gray-600 text-white rounded hover:bg-gray-700"
           >
-            显示代码
+            {t.settings.showCode}
           </button>
         </div>
 
@@ -216,7 +256,7 @@ const CardFlipDemo = () => {
           <div className="flex flex-wrap gap-4">
             <div className="space-y-2 w-[calc(50%-8px)] md:w-[calc(33.333%-11px)] lg:w-[calc(25%-12px)]">
               <label className="block text-sm font-medium text-gray-700">
-                卡片数量 ({settings.cardCount})
+                {t.settings.cardCount} ({settings.cardCount})
               </label>
               <input 
                 type="range" 
@@ -231,7 +271,7 @@ const CardFlipDemo = () => {
             
             <div className="space-y-2 w-[calc(50%-8px)] md:w-[calc(33.333%-11px)] lg:w-[calc(25%-12px)]">
               <label className="block text-sm font-medium text-gray-700">
-                容器宽度 ({settings.containerWidth}%)
+                {t.settings.containerWidth} ({settings.containerWidth}%)
               </label>
               <input 
                 type="range" 
@@ -245,7 +285,7 @@ const CardFlipDemo = () => {
             
             <div className="space-y-2 w-[calc(50%-8px)] md:w-[calc(33.333%-11px)] lg:w-[calc(25%-12px)]">
               <label className="block text-sm font-medium text-gray-700">
-                卡片高度 ({settings.cardHeight}px)
+                {t.settings.cardHeight} ({settings.cardHeight}px)
               </label>
               <input 
                 type="range" 
@@ -259,7 +299,7 @@ const CardFlipDemo = () => {
 
             <div className="space-y-2 w-[calc(50%-8px)] md:w-[calc(33.333%-11px)] lg:w-[calc(25%-12px)]">
               <label className="block text-sm font-medium text-gray-700">
-                内容区域宽度 ({settings.detailWidth}px)
+                {t.settings.detailWidth} ({settings.detailWidth}px)
               </label>
               <input 
                 type="range" 
@@ -273,7 +313,7 @@ const CardFlipDemo = () => {
 
             <div className="space-y-2 w-[calc(50%-8px)] md:w-[calc(33.333%-11px)] lg:w-[calc(25%-12px)]">
               <label className="block text-sm font-medium text-gray-700">
-                收缩宽度 ({settings.collapsedWidth}%)
+                {t.settings.collapsedWidth} ({settings.collapsedWidth}%)
               </label>
               <input 
                 type="range" 
@@ -287,7 +327,7 @@ const CardFlipDemo = () => {
 
             <div className="space-y-2 w-[calc(50%-8px)] md:w-[calc(33.333%-11px)] lg:w-[calc(25%-12px)]">
               <label className="block text-sm font-medium text-gray-700">
-                动画时长 ({settings.animationDuration}s)
+                {t.settings.animationDuration} ({settings.animationDuration}s)
               </label>
               <input 
                 type="range" 
@@ -302,7 +342,7 @@ const CardFlipDemo = () => {
 
             <div className="space-y-2 w-[calc(50%-8px)] md:w-[calc(33.333%-11px)] lg:w-[calc(25%-12px)]">
               <label className="block text-sm font-medium text-gray-700">
-                卡片宽度 ({settings.cardWidth}px)
+                {t.settings.cardWidth} ({settings.cardWidth}px)
               </label>
               <input 
                 type="range" 
@@ -319,7 +359,7 @@ const CardFlipDemo = () => {
           <div className="flex flex-wrap gap-4">
             <div className="space-y-2 w-[calc(50%-8px)] md:w-[calc(33.333%-11px)] lg:w-[calc(25%-12px)]">
               <label className="block text-sm font-medium text-gray-700">
-                卡片颜色
+                {t.settings.cardColor}
               </label>
               <input 
                 type="color" 
@@ -331,7 +371,7 @@ const CardFlipDemo = () => {
 
             <div className="space-y-2 w-[calc(50%-8px)] md:w-[calc(33.333%-11px)] lg:w-[calc(25%-12px)]">
               <label className="block text-sm font-medium text-gray-700">
-                按钮颜色
+                {t.settings.buttonColor}
               </label>
               <input 
                 type="color" 
@@ -343,7 +383,7 @@ const CardFlipDemo = () => {
 
             <div className="space-y-2 w-[calc(50%-8px)] md:w-[calc(33.333%-11px)] lg:w-[calc(25%-12px)]">
               <label className="block text-sm font-medium text-gray-700">
-                卡片字体颜色
+                {t.settings.cardTextColor}
               </label>
               <input 
                 type="color" 
@@ -355,7 +395,7 @@ const CardFlipDemo = () => {
 
             <div className="space-y-2 w-[calc(50%-8px)] md:w-[calc(33.333%-11px)] lg:w-[calc(25%-12px)]">
               <label className="block text-sm font-medium text-gray-700">
-                内容字体颜色
+                {t.settings.detailTextColor}
               </label>
               <input 
                 type="color" 
@@ -372,6 +412,7 @@ const CardFlipDemo = () => {
           isOpen={isCodeModalOpen} 
           onClose={() => setIsCodeModalOpen(false)}
           content={generateCode()}
+          locale={locale}
         >
           <pre className="bg-gray-800 text-white p-4 rounded-lg overflow-x-auto">
             <code>{generateCode()}</code>
@@ -382,7 +423,7 @@ const CardFlipDemo = () => {
       {/* 参数设置区域后添加内容编辑区域 */}
       <div className="bg-gray-50 rounded-lg p-6 mb-8">
         <div className="flex justify-between items-center mb-4">
-          <h3 className="text-xl font-semibold">内容设置</h3>
+          <h3 className="text-xl font-semibold">{t.content.title}</h3>
         </div>
 
         <div className="space-y-6">
@@ -392,11 +433,11 @@ const CardFlipDemo = () => {
               className="p-4 border border-gray-200 rounded-lg space-y-4"
             >
               <div className="flex items-center gap-2">
-                <span className="font-medium min-w-[80px]">卡片 {index + 1}</span>
+                <span className="font-medium min-w-[80px]">{t.content.card} {index + 1}</span>
                 <div className="flex-1 space-y-4">
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-1">
-                      标题
+                      {t.content.cardTitle}
                     </label>
                     <input 
                       type="text"
@@ -408,7 +449,7 @@ const CardFlipDemo = () => {
                   </div>
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-1">
-                      内容
+                      {t.content.cardContent}
                     </label>
                     <textarea 
                       value={card.details}
