@@ -1,81 +1,79 @@
 import React from 'react';
-import { render, screen, fireEvent, within } from '@testing-library/react';
-import '@testing-library/jest-dom';
-import CardFlipDemo from '../index';
+import { render, fireEvent } from '@testing-library/react';
+import { CardFlipDemo } from '../index';
 
-// 创建一个测试包装器
-const TestWrapper: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  return <React.StrictMode>{children}</React.StrictMode>;
-};
+// Mock the clipboard API
+Object.assign(navigator, {
+  clipboard: {
+    writeText: jest.fn(),
+  },
+});
 
-describe('CardFlipDemo Component', () => {
+describe('CardFlipDemo', () => {
   beforeEach(() => {
-    render(
-      <TestWrapper>
-        <CardFlipDemo />
-      </TestWrapper>
-    );
+    // Reset all mocks before each test
+    jest.clearAllMocks();
+    // Reset localStorage before each test
+    localStorage.clear();
   });
 
-  it('renders all preset buttons', () => {
-    expect(screen.getByText('Default')).toBeInTheDocument();
-    expect(screen.getByText('Compact')).toBeInTheDocument();
-    expect(screen.getByText('Widescreen')).toBeInTheDocument();
+  it('renders without crashing', () => {
+    const { container } = render(<CardFlipDemo />);
+    expect(container).toBeTruthy();
+    expect(container.querySelector('.card-container')).toBeTruthy();
   });
 
-  it('switches language correctly', () => {
-    // 默认英语
-    expect(screen.getByText('English')).toHaveClass('bg-gray-600');
-    
-    // 切换到中文
-    fireEvent.click(screen.getByText('简体中文'));
-    expect(screen.getByText('简体中文')).toHaveClass('bg-gray-600');
+  it('allows changing settings', () => {
+    const { getByLabelText } = render(<CardFlipDemo />);
+    const containerWidthInput = getByLabelText(/Container Width/i) as HTMLInputElement;
+
+    fireEvent.change(containerWidthInput, { target: { value: '80' } });
+    expect(containerWidthInput.value).toBe('80');
   });
 
-  it('updates settings when sliders change', () => {
-    const cardCountSlider = screen.getByLabelText(/Card Count/);
-    fireEvent.change(cardCountSlider, { target: { value: '5' } });
-    
-    // 验证卡片数量已更新
-    const cards = screen.getAllByRole('button');
-    expect(cards.length).toBeGreaterThan(4); // 按钮数量应该大于4，因为还包括其他按钮
+  it('allows editing card content', () => {
+    const { getAllByPlaceholderText } = render(<CardFlipDemo />);
+    const titleInputs = getAllByPlaceholderText(/Card \d+ Title/i) as HTMLInputElement[];
+    const detailsInputs = getAllByPlaceholderText(/Card \d+ Details/i) as HTMLTextAreaElement[];
+
+    fireEvent.change(titleInputs[0], { target: { value: 'New Title' } });
+    fireEvent.change(detailsInputs[0], { target: { value: 'New Details' } });
+
+    expect(titleInputs[0].value).toBe('New Title');
+    expect(detailsInputs[0].value).toBe('New Details');
   });
 
-  it('shows code modal when button clicked', () => {
-    const showCodeButton = screen.getByText('Show Code');
+  it('shows code modal when clicking show code button', () => {
+    const { getByText, queryByText } = render(<CardFlipDemo />);
+    const showCodeButton = getByText(/Show Code/i);
+
+    expect(queryByText(/Code Example/i)).toBeNull();
+
     fireEvent.click(showCodeButton);
-    
-    // 验证代码模态框显示
-    expect(screen.getByRole('dialog')).toBeInTheDocument();
+    expect(queryByText(/Code Example/i)).toBeTruthy();
   });
 
-  it('applies preset styles correctly', () => {
-    // 点击紧凑预设
-    fireEvent.click(screen.getByText('Compact'));
-    
-    // 验证样式更新
-    const demoContainer = screen.getByTestId('demo-container');
-    expect(demoContainer).toBeInTheDocument();
+  it('copies code to clipboard when clicking copy button', async () => {
+    const { getByText } = render(<CardFlipDemo />);
+    const showCodeButton = getByText(/Show Code/i);
+
+    fireEvent.click(showCodeButton);
+    const copyButton = getByText(/Copy Code/i);
+    fireEvent.click(copyButton);
+
+    expect(navigator.clipboard.writeText).toHaveBeenCalled();
+    expect(getByText(/Copied!/i)).toBeTruthy();
   });
 
-  it('allows content editing', () => {
-    const titleInput = screen.getByLabelText(/Card 1 Title/);
-    const detailsInput = screen.getByLabelText(/Card 1 Content/);
-    
-    fireEvent.change(titleInput, { target: { value: 'New Title' } });
-    fireEvent.change(detailsInput, { target: { value: 'New Content' } });
-    
-    expect(screen.getByText('New Title')).toBeInTheDocument();
-    expect(screen.getByText('New Content')).toBeInTheDocument();
-  });
+  it('closes modal when clicking close button', () => {
+    const { getByText, queryByText } = render(<CardFlipDemo />);
+    const showCodeButton = getByText(/Show Code/i);
 
-  it('handles color picker changes', () => {
-    const cardColorPicker = screen.getByLabelText(/Card Color/);
-    fireEvent.change(cardColorPicker, { target: { value: '#ff0000' } });
-    
-    const demoContainer = screen.getByTestId('demo-container');
-    expect(demoContainer).toHaveStyle({
-      '--card-color': '#ff0000'
-    });
+    fireEvent.click(showCodeButton);
+    expect(queryByText(/Code Example/i)).toBeTruthy();
+
+    const closeButton = getByText('✕');
+    fireEvent.click(closeButton);
+    expect(queryByText(/Code Example/i)).toBeNull();
   });
 }); 

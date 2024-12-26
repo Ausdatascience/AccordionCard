@@ -1,2 +1,2 @@
-export { default as CardFlipDemo } from './components/CardFlipDemo';
+export { CardFlipDemo } from './components/CardFlipDemo';
 export { generateComponentCode } from './components/CardFlipDemo/codeGenerator'; 
