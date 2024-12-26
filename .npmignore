@@ -13,4 +13,10 @@ jest.setup.js
 postcss.config.js
 tailwind.config.*
 tsconfig.json
-.babelrc 
+.babelrc
+out
+.next
+.vercel
+.vscode
+.idea
+.env* 
