@@ -20,11 +20,13 @@
     }
   },
   "include": [
-    "src/**/*",
+    "src/components/CardFlip/**/*",
     "src/types/**/*"
   ],
   "exclude": [
     "node_modules",
+    "src/app/**/*",
+    "src/components/CardFlipDemo/**/*",
     "**/__tests__/*",
     "**/*.test.tsx"
   ]

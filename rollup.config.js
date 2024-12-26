@@ -7,7 +7,7 @@ const require = createRequire(import.meta.url);
 const pkg = require('./package.json');
 
 export default {
-  input: 'src/lib/CardFlip/index.tsx',
+  input: 'src/components/CardFlip/index.tsx',
   output: [
     {
       file: pkg.main,
@@ -36,7 +36,7 @@ export default {
       tsconfig: 'tsconfig.json',
       clean: true,
       tsconfigOverride: {
-        include: ['src/lib/**/*', 'src/types/**/*'],
+        include: ['src/components/**/*', 'src/types/**/*'],
         exclude: ['src/app/**/*', 'node_modules', '**/__tests__/*', '**/*.test.tsx']
       }
     }),

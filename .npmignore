@@ -1,7 +1,8 @@
-src
-tsconfig.json
-rollup.config.js
-.gitignore
+src/app
+src/components/CardFlipDemo
+public
+.next
 node_modules
-__tests__
-*.test.tsx 
+*.test.tsx
+*.test.ts
+__tests__ 
