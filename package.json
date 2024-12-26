@@ -10,7 +10,7 @@
     "src/components"
   ],
   "scripts": {
-    "build": "rimraf dist && rollup -c",
+    "build": "rimraf dist && rollup -c && next build && next export",
     "dev": "next dev",
     "start": "next start",
     "test": "jest --config jest.config.js",

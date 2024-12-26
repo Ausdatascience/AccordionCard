@@ -12,30 +12,6 @@ An elegant and customizable accordion card component for React.
 
 ---
 
-# 简体中文
-
-一个优雅且可自定义的 React 手风琴卡片组件。
-
-[查看完整中文文档](#简体中文-full)
-
----
-
-# 繁體中文
-
-一個優雅且可自定義的 React 手風琴卡片元件。
-
-[查看完整繁體中文文檔](#繁體中文-full)
-
----
-
-# 日本語
-
-エレガントでカスタマイズ可能な React アコーディオンカードコンポーネント。
-
-[完全な日本語ドキュメントを表示](#日本語-full)
-
----
-
 <h1 id="english-full">English Documentation</h1>
 
 ## Installation
@@ -256,7 +232,7 @@ import { CardFlip } from 'react-accordion-cardflip';
 const cards = [
   {
     title: "卡片 1",
-    details: "卡片 1 的詳細內容"
+    details: "卡��� 1 的詳細內容"
   },
   {
     title: "卡片 2",
@@ -350,19 +326,19 @@ MIT © [Ausdata Science]
 npm install react-accordion-cardflip
 ```
 
-## Usage
+## 使用方法
 
 ```tsx
 import { CardFlip } from 'react-accordion-cardflip';
 
 const cards = [
   {
-    title: "Card 1",
-    details: "Details for card 1"
+    title: "カード 1",
+    details: "カード 1 の詳細内容"
   },
   {
-    title: "Card 2",
-    details: "Details for card 2"
+    title: "カード 2",
+    details: "カード 2 の詳細内容"
   }
 ];
 
@@ -381,63 +357,63 @@ function App() {
 }
 ```
 
-## Props
+## プロパティ
 
-| Prop | Type | Default | Description |
+| プロパティ | 型 | デフォルト値 | 説明 |
 |------|------|---------|-------------|
-| cards | Card[] | [] | Array of card data |
-| containerWidth | string \| number | '60%' | Container width |
-| cardColor | string | '#76B900' | Card background color |
-| buttonColor | string | '#007bff' | Button color |
-| cardHeight | number | 300 | Card height in pixels |
-| animationDuration | number | 1 | Animation duration in seconds |
-| detailWidth | number | 200 | Content area width in pixels |
-| collapsedWidth | number | 10 | Collapsed width percentage |
-| cardTextColor | string | '#ffffff' | Card text color |
-| detailTextColor | string | '#000000' | Detail text color |
-| className | string | '' | Additional CSS class |
+| cards | Card[] | [] | カードデータの配列 |
+| containerWidth | string \| number | '60%' | コンテナの幅 |
+| cardColor | string | '#76B900' | カードの背景色 |
+| buttonColor | string | '#007bff' | ボタンの色 |
+| cardHeight | number | 300 | カードの高さ（ピクセル） |
+| animationDuration | number | 1 | アニメーション時間（秒） |
+| detailWidth | number | 200 | 詳細エリアの幅（ピクセル） |
+| collapsedWidth | number | 10 | 折りたたみ時の幅（パーセント） |
+| cardTextColor | string | '#ffffff' | カードのテキスト色 |
+| detailTextColor | string | '#000000' | 詳細のテキスト色 |
+| className | string | '' | 追加の CSS クラス |
 
-## Features
+## 特徴
 
-- 🎨 Fully customizable styles
-- 📱 Responsive design
-- 🎭 Smooth animations
-- ⚙️ Rich configuration options
-- 💻 Easy to integrate
-- 📝 TypeScript support
+- 🎨 完全にカスタマイズ可能なスタイル
+- 📱 レスポンシブデザイン
+- 🎭 スムーズなアニメーション
+- ⚙️ 豊富な設定オプション
+- 💻 簡単に統合可能
+- 📝 TypeScript サポート
 
-## Development
+## 開発
 
-1. Clone the repository:
+1. リポジトリのクローン：
 ```bash
 git clone https://github.com/Ausdatascience/AccordionCard.git
 cd AccordionCard
 ```
 
-2. Install dependencies:
+2. 依存関係のインストール：
 ```bash
 npm install
 ```
 
-3. Build the package:
+3. パッケージのビルド：
 ```bash
 npm run build
 ```
 
-## Testing
+## テスト
 
 ```bash
 npm test
 ```
 
-## License
+## ライセンス
 
 MIT © [Ausdata Science]
 
-## Contributing
+## 貢献
 
-Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
+Pull Request を歓迎します。大きな変更を加える場合は、まず Issue を作成して変更内容について議論してください。
 
-## Support
+## サポート
 
-If you have any questions or need help, please open an issue in the GitHub repository.
+質問やヘルプが必要な場合は、GitHub リポジトリで Issue を作成してください。
