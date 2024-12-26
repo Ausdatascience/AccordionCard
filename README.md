@@ -1,14 +1,38 @@
 # React Accordion CardFlip
 
-[English](#english) | [简体中文](#简体中文) | [繁體中文](#繁體中文) | [日本語](#日本語)
+[English](#english-doc) | [简体中文](#chinese-doc) | [繁體中文](#chinese-traditional-doc) | [日本語](#japanese-doc)
 
 ---
 
-# English
+<h1 id="english-doc">English</h1>
 
 An elegant and customizable accordion card component for React.
 
 [View full English documentation](#english-full)
+
+---
+
+<h1 id="chinese-doc">简体中文</h1>
+
+一个优雅且可自定义的 React 手风琴卡片组件。
+
+[查看完整中文文档](#chinese-full)
+
+---
+
+<h1 id="chinese-traditional-doc">繁體中文</h1>
+
+一個優雅且可自定義的 React 手風琴卡片元件。
+
+[查看完整繁體中文文檔](#chinese-traditional-full)
+
+---
+
+<h1 id="japanese-doc">日本語</h1>
+
+エレガントでカスタマイズ可能な React アコーディオンカードコンポーネント。
+
+[完全な日本語ドキュメントを表示](#japanese-full)
 
 ---
 
@@ -114,7 +138,7 @@ If you have any questions or need help, please open an issue in the GitHub repos
 
 ---
 
-<h1 id="简体中文-full">简体中文文档</h1>
+<h1 id="chinese-full">简体中文文档</h1>
 
 ## 安装
 
@@ -216,7 +240,7 @@ MIT © [Ausdata Science]
 
 ---
 
-<h1 id="繁體中文-full">繁體中文文檔</h1>
+<h1 id="chinese-traditional-full">繁體中文文檔</h1>
 
 ## 安裝
 
@@ -232,7 +256,7 @@ import { CardFlip } from 'react-accordion-cardflip';
 const cards = [
   {
     title: "卡片 1",
-    details: "卡��� 1 的詳細內容"
+    details: "卡片 1 的詳細內容"
   },
   {
     title: "卡片 2",
@@ -318,7 +342,7 @@ MIT © [Ausdata Science]
 
 ---
 
-<h1 id="日本語-full">日本語ドキュメント</h1>
+<h1 id="japanese-full">日本語ドキュメント</h1>
 
 ## インストール
 
