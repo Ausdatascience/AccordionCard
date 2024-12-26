@@ -23,7 +23,7 @@ export default {
   ],
   external: [
     ...Object.keys(pkg.peerDependencies || {}),
-    'react-accordion-cardflip-core'
+    'AccordionCard-core'
   ],
   plugins: [
     resolve(),

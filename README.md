@@ -1,26 +1,44 @@
-# React Accordion CardFlip
+# React Accordion
 
-一个优雅的 React 手风琴卡片翻转组件集合。
+[![npm version](https://img.shields.io/npm/v/react-accordion-core.svg)](https://www.npmjs.com/package/react-accordion-core)
+[![npm downloads](https://img.shields.io/npm/dm/react-accordion-core.svg)](https://www.npmjs.com/package/react-accordion-core)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![TypeScript](https://img.shields.io/badge/TypeScript-Ready-blue.svg)](https://www.typescriptlang.org/)
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](./CONTRIBUTING.md)
+[![Test Coverage](https://img.shields.io/badge/coverage-100%25-brightgreen.svg)](./packages/react-accordion-core/coverage)
+
+一个优雅的 React 手风琴组件集合。
 
 ## 包说明
 
 本仓库包含以下包：
 
-### [@react-accordion-cardflip/core](./packages/react-accordion-cardflip-core)
+### [react-accordion-core](./packages/react-accordion-core)
 
-核心组件包，提供基础的卡片翻转功能。
+核心组件包，提供基础的手风琴功能。
 
 ```bash
-npm install react-accordion-cardflip-core
+npm install react-accordion-core
 ```
 
-### [@react-accordion-cardflip/dev](./packages/react-accordion-cardflip-dev)
+### [react-accordion-dev](./packages/react-accordion-dev)
 
 开发工具包，提供实时预览、代码生成和多语言支持。
 
 ```bash
-npm install react-accordion-cardflip-dev
+npm install react-accordion-dev
 ```
+
+## 特性
+
+- 🎯 简单直观的 API
+- 🎨 高度可定制的样式
+- 📱 响应式设计
+- ⚡ 流畅的动画效果
+- 🔧 TypeScript 支持
+- 📦 轻量级设计
+- 🧪 完整的测试覆盖
+- 🌍 多语言支持
 
 ## 开发
 
@@ -40,8 +58,8 @@ npm run lint
 
 ## 文档
 
-- [核心包文档](./packages/react-accordion-cardflip-core/README.md)
-- [开发工具包文档](./packages/react-accordion-cardflip-dev/README.md)
+- [核心包文档](./packages/react-accordion-core/README.md)
+- [开发工具包文档](./packages/react-accordion-dev/README.md)
 
 ## 贡献指南
 

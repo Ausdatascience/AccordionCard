@@ -1,7 +1,7 @@
 {
-  "name": "react-accordion-cardflip-dev",
+  "name": "react-accordion-dev",
   "version": "0.1.0",
-  "description": "Development tools for react-accordion-cardflip-core",
+  "description": "Development tools for react-accordion-core",
   "type": "module",
   "main": "dist/index.js",
   "module": "dist/index.esm.js",
@@ -11,7 +11,10 @@
   ],
   "scripts": {
     "build": "rimraf dist && rollup -c",
-    "test": "jest --config jest.config.js",
+    "dev": "vite",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage",
     "lint": "eslint src",
     "prepublishOnly": "npm run build"
   },
@@ -27,33 +30,40 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Ausdatascience/AccordionCard.git"
+    "url": "git+https://github.com/Ausdatascience/react-accordion.git"
   },
-  "homepage": "https://github.com/Ausdatascience/AccordionCard#readme",
+  "homepage": "https://github.com/Ausdatascience/react-accordion#readme",
   "bugs": {
-    "url": "https://github.com/Ausdatascience/AccordionCard/issues"
+    "url": "https://github.com/Ausdatascience/react-accordion/issues"
   },
   "peerDependencies": {
     "react": ">=16.8.0",
-    "react-dom": ">=16.8.0",
-    "react-accordion-cardflip-core": "^0.1.0"
+    "react-accordion-core": "^0.1.0",
+    "react-dom": ">=16.8.0"
   },
   "devDependencies": {
     "@rollup/plugin-commonjs": "^25.0.0",
     "@rollup/plugin-json": "^6.0.0",
     "@rollup/plugin-node-resolve": "^15.0.0",
+    "@testing-library/jest-dom": "^6.1.5",
     "@testing-library/react": "^14.0.0",
+    "@testing-library/user-event": "^14.5.1",
     "@types/jest": "^29.5.12",
     "@types/react": "^18.2.0",
     "@types/react-dom": "^18.2.0",
+    "@vitejs/plugin-react": "^4.3.4",
+    "autoprefixer": "^10.0.1",
+    "identity-obj-proxy": "^3.0.0",
     "jest": "^29.7.0",
+    "jest-environment-jsdom": "^29.7.0",
+    "postcss": "^8",
     "rimraf": "^5.0.10",
     "rollup": "^4.29.1",
     "rollup-plugin-postcss": "^4.0.2",
     "rollup-plugin-typescript2": "^0.36.0",
-    "typescript": "^5.7.2",
     "tailwindcss": "^3.3.0",
-    "autoprefixer": "^10.0.1",
-    "postcss": "^8"
+    "ts-jest": "^29.1.1",
+    "typescript": "^5.7.2",
+    "vite": "^6.0.6"
   }
-} 
+}

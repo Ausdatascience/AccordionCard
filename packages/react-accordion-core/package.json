@@ -1,7 +1,7 @@
 {
-  "name": "react-accordion-cardflip-core",
+  "name": "react-accordion-core",
   "version": "0.1.0",
-  "description": "Core accordion card component for React",
+  "description": "Core accordion component for React - A lightweight and customizable card flip component",
   "type": "module",
   "main": "dist/index.js",
   "module": "dist/index.esm.js",
@@ -11,26 +11,32 @@
   ],
   "scripts": {
     "build": "rimraf dist && rollup -c",
-    "test": "jest --config jest.config.js",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage",
     "lint": "eslint src",
-    "prepublishOnly": "npm run build"
+    "prepublishOnly": "npm run build && npm test"
   },
   "keywords": [
     "react",
     "accordion",
     "card",
     "component",
-    "ui"
+    "ui",
+    "flip",
+    "animation",
+    "typescript",
+    "responsive"
   ],
   "author": "Ausdata Science",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Ausdatascience/AccordionCard.git"
+    "url": "git+https://github.com/Ausdatascience/flipflow.git"
   },
-  "homepage": "https://github.com/Ausdatascience/AccordionCard#readme",
+  "homepage": "https://github.com/Ausdatascience/flipflow#readme",
   "bugs": {
-    "url": "https://github.com/Ausdatascience/AccordionCard/issues"
+    "url": "https://github.com/Ausdatascience/flipflow/issues"
   },
   "peerDependencies": {
     "react": ">=16.8.0",
@@ -40,15 +46,23 @@
     "@rollup/plugin-commonjs": "^25.0.0",
     "@rollup/plugin-json": "^6.0.0",
     "@rollup/plugin-node-resolve": "^15.0.0",
+    "@testing-library/jest-dom": "^6.1.5",
     "@testing-library/react": "^14.0.0",
+    "@testing-library/user-event": "^14.5.1",
     "@types/jest": "^29.5.12",
     "@types/react": "^18.2.0",
     "@types/react-dom": "^18.2.0",
+    "identity-obj-proxy": "^3.0.0",
     "jest": "^29.7.0",
+    "jest-environment-jsdom": "^29.7.0",
     "rimraf": "^5.0.10",
     "rollup": "^4.29.1",
     "rollup-plugin-postcss": "^4.0.2",
     "rollup-plugin-typescript2": "^0.36.0",
+    "ts-jest": "^29.1.1",
     "typescript": "^5.7.2"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 } 
