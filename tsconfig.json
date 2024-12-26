@@ -36,7 +36,8 @@
     "src/components/CardFlip/**/*",
     "src/types/**/*",
     ".next/types/**/*.ts",
-    "dist/types/**/*.ts"
+    "dist/types/**/*.ts",
+    "out/types/**/*.ts"
   ],
   "exclude": [
     "node_modules",
