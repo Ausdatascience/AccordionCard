@@ -1,0 +1,59 @@
+{
+  "name": "react-accordion-cardflip-dev",
+  "version": "0.1.0",
+  "description": "Development tools for react-accordion-cardflip-core",
+  "type": "module",
+  "main": "dist/index.js",
+  "module": "dist/index.esm.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "rimraf dist && rollup -c",
+    "test": "jest --config jest.config.js",
+    "lint": "eslint src",
+    "prepublishOnly": "npm run build"
+  },
+  "keywords": [
+    "react",
+    "accordion",
+    "card",
+    "component",
+    "ui",
+    "development"
+  ],
+  "author": "Ausdata Science",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Ausdatascience/AccordionCard.git"
+  },
+  "homepage": "https://github.com/Ausdatascience/AccordionCard#readme",
+  "bugs": {
+    "url": "https://github.com/Ausdatascience/AccordionCard/issues"
+  },
+  "peerDependencies": {
+    "react": ">=16.8.0",
+    "react-dom": ">=16.8.0",
+    "react-accordion-cardflip-core": "^0.1.0"
+  },
+  "devDependencies": {
+    "@rollup/plugin-commonjs": "^25.0.0",
+    "@rollup/plugin-json": "^6.0.0",
+    "@rollup/plugin-node-resolve": "^15.0.0",
+    "@testing-library/react": "^14.0.0",
+    "@types/jest": "^29.5.12",
+    "@types/react": "^18.2.0",
+    "@types/react-dom": "^18.2.0",
+    "jest": "^29.7.0",
+    "rimraf": "^5.0.10",
+    "rollup": "^4.29.1",
+    "rollup-plugin-postcss": "^4.0.2",
+    "rollup-plugin-typescript2": "^0.36.0",
+    "typescript": "^5.7.2",
+    "tailwindcss": "^3.3.0",
+    "autoprefixer": "^10.0.1",
+    "postcss": "^8"
+  }
+} 

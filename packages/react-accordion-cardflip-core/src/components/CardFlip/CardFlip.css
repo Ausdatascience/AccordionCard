@@ -1,0 +1,412 @@
+.card-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    padding: 20px;
+    gap: 15px;
+    position: relative;
+    min-height: calc(var(--card-height) + 40px);
+    margin: 20px auto;
+    box-sizing: border-box;
+    width: var(--container-width);
+    max-width: 1920px;
+}
+
+.card {
+    width: var(--normal-width);
+    height: var(--card-height);
+    background: var(--card-color);
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    transition: all var(--animation-duration) ease;
+    position: relative;
+    overflow: visible;
+    box-sizing: border-box;
+}
+
+/* 当有卡片激活时，其他卡片缩小 */
+.card-container:has(.active) .card:not(.active) {
+    width: var(--collapsed-width);
+}
+
+/* 激活卡片的宽度 */
+.card.active {
+    width: var(--active-width);
+}
+
+.card-inner {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.card-front {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--card-color);
+    padding: 15px;
+    border-radius: 8px;
+    position: relative;
+}
+
+.card-front button {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    min-width: 30px;
+    min-height: 30px;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    border: none;
+    background-color: var(--button-color);
+    color: var(--card-text-color);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    flex-shrink: 0;
+    padding: 0;
+    line-height: 1;
+    z-index: 1;
+}
+
+/* 内容块样式 */
+.card-details {
+    position: absolute;
+    width: var(--detail-width);
+    height: var(--card-height);
+    background-color: var(--background, #ffffff);
+    color: var(--detail-text-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    line-height: 1.5;
+    z-index: 100;
+    left: 100%;
+    top: 0;
+    box-sizing: border-box;
+    padding: 20px;
+    animation: fadeIn 0.5s ease var(--animation-duration) forwards;
+    opacity: 0;
+}
+
+/* 添加内容溢出处理 */
+.card-details p {
+    margin: 0;
+    overflow: hidden;           /* 隐藏溢出内容 */
+    text-overflow: ellipsis;    /* 显示省略号 */
+    display: -webkit-box;       /* 必须结合的属性 */
+    -webkit-box-orient: vertical;  /* 必须结合的属性 */
+    -webkit-line-clamp: var(--max-lines);  /* 使用计算好的行数 */
+    max-height: calc(var(--card-height) - 40px);  /* 最大高度，留出padding空间 */
+    word-break: break-word;     /* 允许在单词内换行 */
+    color: var(--detail-text-color);
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+/* 调整卡片位置 */
+.card-container:has(.active) .card {
+    transition: all var(--animation-duration) ease;
+}
+
+/* 桌面端的卡片位移效果 */
+@media (min-width: 769px) {
+    /* 第一个卡片激活时的布局 */
+    .card-container:has(.card:nth-child(1).active) .card:nth-child(n+2) {
+        transform: translateX(var(--detail-width));
+    }
+
+    .card-container:has(.card:nth-child(2).active) .card:nth-child(n+3) {
+        transform: translateX(var(--detail-width));
+    }
+
+    .card-container:has(.card:nth-child(3).active) .card:nth-child(n+4) {
+        transform: translateX(var(--detail-width));
+    }
+
+    .card-container:has(.card:nth-child(4).active) .card:nth-child(n+5) {
+        transform: translateX(var(--detail-width));
+    }
+
+    .card-container:has(.card:nth-child(5).active) .card:nth-child(n+6) {
+        transform: translateX(var(--detail-width));
+    }
+
+    .card-container:has(.card:nth-child(6).active) .card:nth-child(n+7) {
+        transform: translateX(var(--detail-width));
+    }
+}
+
+/* 移动端和平板端的共同样式 (<=768px) */
+@media (max-width: 768px) {
+    /* 卡片容器 */
+    .card-container {
+        flex-direction: column;
+        padding: 15px;
+        gap: 10px;
+        width: 100%;
+        min-height: unset; /* 移除最小高度限制 */
+    }
+
+    /* 单个卡片 */
+    .card {
+        width: 100% !important;
+        height: auto !important; /* 改为自适应高度 */
+        min-height: unset; /* 移除最小高度限制 */
+        background: transparent;
+        box-shadow: none;
+        margin-bottom: 10px;
+    }
+
+    /* 卡片内部容器 */
+    .card-inner {
+        height: auto !important; /* 改为自适应高度 */
+        min-height: unset;
+    }
+
+    /* 卡片正面（标题区域） */
+    .card-front {
+        height: auto !important; /* 改为自适应高度 */
+        min-height: 50px;
+        background-color: var(--card-color);
+        border-radius: 8px;
+        padding: 15px;
+        display: flex;
+        align-items: center;
+        position: relative; /* 为按钮定位 */
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+
+    /* 标题文本 */
+    .card-front h2 {
+        flex: 1;
+        font-size: 16px;
+        margin: 0;
+        padding-right: 40px; /* 为按钮留出空间 */
+        word-wrap: break-word; /* 允许长文本换行 */
+        color: var(--card-text-color);
+    }
+
+    /* 展开/收起按钮 */
+    .card-front button {
+        position: absolute;
+        right: 15px;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 30px;
+        height: 30px;
+        min-width: 30px; /* 确保按钮不会被压缩 */
+        border-radius: 50%;
+    }
+
+    /* 详细内容区域 */
+    .card-details {
+        position: static !important;
+        width: 100% !important;
+        height: auto !important;
+        background-color: var(--background);
+        margin-top: 8px;
+        padding: 15px;
+        opacity: 1;
+        z-index: 100;
+    }
+
+    /* 详细内容文本 */
+    .card-details p {
+        font-size: 14px;
+        line-height: 1.6;
+        margin: 0;
+        color: var(--detail-text-color);
+        word-wrap: break-word; /* 允许长文本换行 */
+    }
+}
+
+/* 平板端特有样式 (401px-768px) */
+@media (min-width: 401px) and (max-width: 768px) {
+    .card-container {
+        flex-direction: column;
+        padding: 15px;
+        gap: 10px;
+        width: 100%;
+        min-height: unset; /* 移除最小高度限制 */
+    }
+
+    /* 单个卡片 */
+    .card {
+        width: 100% !important;
+        height: auto !important; /* 改为自适应高度 */
+        min-height: unset; /* 移除最小高度限制 */
+        background: transparent;
+        box-shadow: none;
+        margin-bottom: 10px;
+    }
+
+    /* 卡片内部容器 */
+    .card-inner {
+        height: auto !important; /* 改为自适应高度 */
+        min-height: unset;
+    }
+
+    /* 卡片正面（标题区域） */
+    .card-front {
+        height: auto !important; /* 改为自适应高度 */
+        min-height: 50px;
+        background-color: var(--card-color);
+        border-radius: 8px;
+        padding: 15px;
+        display: flex;
+        align-items: center;
+        position: relative; /* 为按钮定位 */
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+
+    /* 标题文本 */
+    .card-front h2 {
+        flex: 1;
+        font-size: 16px;
+        margin: 0;
+        padding-right: 40px; /* 为按钮留出空间 */
+        word-wrap: break-word; /* 允许长文本换行 */
+        color: var(--card-text-color);
+    }
+
+    /* 展开/收起按钮 */
+    .card-front button {
+        position: absolute;
+        right: 15px;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 30px;
+        height: 30px;
+        min-width: 30px; /* 确保按钮不会被压缩 */
+        border-radius: 50%;
+    }
+
+    /* 详细内容区域 */
+    .card-details {
+        position: static !important;
+        width: 100% !important;
+        height: auto !important;
+        background-color: var(--background);
+        margin-top: 8px;
+        padding: 15px;
+        opacity: 1;
+        z-index: 100;
+    }
+
+    /* 详细内容文本 */
+    .card-details p {
+        font-size: 14px;
+        line-height: 1.6;
+        margin: 0;
+        color: var(--detail-text-color);
+        word-wrap: break-word; /* 允许长文本换行 */
+    }
+}
+
+/* 手机端特有样式 (<=400px) */
+@media (max-width: 400px) {
+    .card-container:has(.card:nth-child(n).active) .card:nth-child(n) {
+        transform: none !important;
+    }
+
+    /* 移动端卡片宽度调整 */
+    .card-container:has(.active) .card:not(.active) {
+        width: 100% !important;
+    }
+
+    .card.active {
+        width: 100% !important;
+    }
+}
+
+/* 平板设备适配 */
+@media (min-width: 769px) and (max-width: 1024px) {
+    .card-container {
+        padding: 15px;
+        gap: 15px;
+        width: 100%;
+    }
+
+    .card {
+        width: calc(50% - 7.5px) !important;
+    }
+
+    .card-details {
+        position: static !important;
+        width: 100% !important;
+        margin-top: 10px;
+        height: auto !important;
+    }
+
+    .card.active {
+        width: 100% !important;
+    }
+
+    .card-container:has(.card:nth-child(n).active) .card:nth-child(n) {
+        transform: none !important;
+    }
+}
+
+/* 添加暗色模式支持 */
+@media (prefers-color-scheme: dark) {
+    .card-front {
+        background-color: var(--card-color, #2d2d2d);
+    }
+
+    .card-details {
+        background-color: var(--background, #1a1a1a);
+        color: var(--detail-text-color);
+    }
+}
+
+/* 响应式调整 */
+@media (max-width: 1200px) {
+    .card-details {
+        width: 100%;
+    }
+}
+
+@media (max-width: 992px) {
+    .card-details {
+        width: 100%;
+    }
+}
+
+/* 卡片标题样式 */
+.card-front h2 {
+    flex: 1;
+    font-size: 16px;
+    margin: 0;
+    padding-right: 45px;
+    word-wrap: break-word;
+    color: var(--card-text-color);
+}
+
+/* 移动端标题样式保持一致 */
+@media (max-width: 768px) {
+    .card-front h2 {
+        flex: 1;
+        font-size: 16px;
+        margin: 0;
+        padding-right: 40px;
+        word-wrap: break-word;
+        color: var(--card-text-color);
+    }
+} 
