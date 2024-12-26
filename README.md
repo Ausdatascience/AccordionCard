@@ -1,13 +1,59 @@
-# AccordionCard 手风琴卡片 | Folding Card Component
+# React Accordion CardFlip
 
-[English](#english) | [中文](#中文)
+An elegant and customizable accordion card component for React.
 
-## English
+## Installation
 
-### Introduction
-AccordionCard is an elegant, customizable React folding card component. It provides smooth animations and rich customization options, making it perfect for creating interactive content displays.
+```bash
+npm install react-accordion-cardflip
+```
 
-### Features
+## Usage
+
+```tsx
+import { CardFlip } from 'react-accordion-cardflip';
+
+const cards = [
+  {
+    title: "Card 1",
+    details: "Details for card 1"
+  },
+  {
+    title: "Card 2",
+    details: "Details for card 2"
+  }
+];
+
+function App() {
+  return (
+    <CardFlip 
+      cards={cards}
+      containerWidth={90}
+      cardHeight={200}
+      cardColor="#76B900"
+    />
+  );
+}
+```
+
+## Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| cards | Card[] | [] | Array of card data |
+| containerWidth | string \| number | '60%' | Container width |
+| cardColor | string | '#76B900' | Card background color |
+| buttonColor | string | '#007bff' | Button color |
+| cardHeight | number | 300 | Card height in pixels |
+| animationDuration | number | 1 | Animation duration in seconds |
+| detailWidth | number | 200 | Content area width in pixels |
+| collapsedWidth | number | 10 | Collapsed width percentage |
+| cardTextColor | string | '#ffffff' | Card text color |
+| detailTextColor | string | '#000000' | Detail text color |
+| className | string | '' | Additional CSS class |
+
+## Features
+
 - 🎨 Fully customizable styles
 - 📱 Responsive design
 - 🎭 Smooth animations
@@ -15,7 +61,7 @@ AccordionCard is an elegant, customizable React folding card component. It provi
 - 💻 Easy to integrate
 - 📝 TypeScript support
 
-### Getting Started
+## Development
 
 1. Clone the repository:
 ```bash
@@ -28,168 +74,25 @@ cd AccordionCard
 npm install
 ```
 
-3. Run the development server:
-```bash
-npm run dev
-```
-
-4. Open [http://localhost:3000](http://localhost:3000) to view the demo.
-
-5. For production:
+3. Build the package:
 ```bash
 npm run build
-npm run start
 ```
 
-### Basic Usage
-```tsx
-import { CardFlip } from 'AccordionCard';
+## Testing
 
-// Define card data
-const cards = [
-  {
-    title: "Card 1",
-    details: "This is the content for card 1..."
-  },
-  {
-    title: "Card 2",
-    details: "This is the content for card 2..."
-  },
-  {
-    title: "Card 3",
-    details: "This is the content for card 3..."
-  }
-];
-
-function App() {
-  return (
-    <CardFlip 
-      cards={cards}
-      containerWidth={90}        // Container width (percentage)
-      cardHeight={200}          // Card height in pixels
-      detailWidth={300}         // Content area width in pixels
-      collapsedWidth={10}       // Collapsed width percentage
-      cardColor="#76B900"       // Card background color
-      buttonColor="#007bff"     // Button color
-      animationDuration={0.8}   // Animation duration in seconds
-      cardTextColor="#ffffff"   // Card text color
-      detailTextColor="#000000" // Detail text color
-      className="my-cards"      // Optional custom class
-    />
-  );
-}
-```
-
-### Documentation
-For detailed documentation and examples, please visit our [demo page](https://AccordionCard.vercel.app).
-
-### License
-MIT License
-
----
-
-## 中文
-
-### 简介
-AccordionCard 是一个优雅、可自定义的 React 手风琴卡片组件。它提供流畅的动画效果和丰富的自定义选项，非常适合创建交互式内容展示。
-
-### 特性
-- 🎨 完全可自定义样式
-- 📱 响应式设计
-- 🎭 流畅动画效果
-- ⚙️ 丰富的配置选项
-- 💻 易于集成
-- 📝 TypeScript 支持
-
-### 快速开始
-
-1. 克隆仓库：
 ```bash
-git clone https://github.com/Ausdatascience/AccordionCard.git
-cd AccordionCard
+npm test
 ```
 
-2. 安装依赖：
-```bash
-npm install
-```
+## License
 
-3. 运行开发服务器：
-```bash
-npm run dev
-```
+MIT © [Ausdata Science]
 
-4. 打开 [http://localhost:3000](http://localhost:3000) 查看演示。
+## Contributing
 
-5. 生产环境：
-```bash
-npm run build
-npm run start
-```
+Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
 
-### 基础用法
-```tsx
-import { CardFlip } from 'AccordionCard';
+## Support
 
-// 定义卡片数据
-const cards = [
-  {
-    title: "卡片 1",
-    details: "这是第一张卡片的内容..."
-  },
-  {
-    title: "卡片 2",
-    details: "这是第二张卡片的内容..."
-  },
-  {
-    title: "卡片 3",
-    details: "这是第三张卡片的内容..."
-  }
-];
-
-function App() {
-  return (
-    <CardFlip 
-      cards={cards}
-      containerWidth={90}        // 容器宽度（百分比）
-      cardHeight={200}          // 卡片高度（像素）
-      detailWidth={300}         // 内容区域宽度（像素）
-      collapsedWidth={10}       // 收缩状态宽度（百分比）
-      cardColor="#76B900"       // 卡片背景色
-      buttonColor="#007bff"     // 按钮颜色
-      animationDuration={0.8}   // 动画持续时间（秒）
-      cardTextColor="#ffffff"   // 卡片文字颜色
-      detailTextColor="#000000" // 内容文字颜色
-      className="my-cards"      // 可选的自定义类名
-    />
-  );
-}
-```
-
-### 文档
-详细文档和示例请访问我们的[演示页面](https://AccordionCard.vercel.app/)。
-
-### 许可证
-MIT License
-
----
-
-## Props
-
-| Prop | Type | Default | Description | 描述 |
-|------|------|---------|-------------|------|
-| cards | Array | [] | Card data array | 卡片数据数组 |
-| containerWidth | string \| number | '60%' | Container width | 容器宽度 |
-| cardColor | string | '#76B900' | Card background color | 卡片背景色 |
-| buttonColor | string | '#007bff' | Button color | 按钮颜色 |
-| cardHeight | number | 300 | Card height | 卡片高度 |
-| animationDuration | number | 1 | Animation duration (seconds) | 动画持续时间（秒） |
-| detailWidth | number | 200 | Content area width | 内容区域宽度 |
-| collapsedWidth | number | 10 | Collapsed width percentage | 收缩状态宽度百分比 |
-| cardTextColor | string | '#ffffff' | Card text color | 卡片文字颜色 |
-| detailTextColor | string | '#000000' | Detail text color | 详情文字颜色 |
-| className | string | '' | Additional CSS class | 额外的 CSS 类名 |
-
----
-
-Designed and developed by [Ausdata Science](https://github.com/Ausdatascience)
+If you have any questions or need help, please open an issue in the GitHub repository.

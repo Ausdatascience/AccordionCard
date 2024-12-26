@@ -1,0 +1,30 @@
+cardContainer {
+  display: flex;
+  /* ... */
+}
+
+card {
+  width: var(--normal-width);
+  /* ... */
+}
+/* ... 其他样式 */ 
+
+/* Shrink other cards when one is active */
+.cardContainer:has(.active) .card:not(.active) {
+  width: var(--collapsed-width);
+}
+
+/* Active card width */
+.card.active {
+  width: var(--active-width);
+}
+
+/* Content block styles */
+.cardDetails {
+  // ...
+}
+
+/* Handle content overflow */
+.cardDetails p {
+  // ...
+} 

@@ -1,12 +1,22 @@
-"use client";
-
 import React, { useState, useEffect } from 'react';
-import './CardFlip.css';
+import styles from './CardFlip.module.css';
 import { CardFlipProps } from './types';
 
 /**
- * AccordionCard 手风琴卡片组件
- * 一个优雅的、可自定义的手风琴卡片组件
+ * React Accordion CardFlip Component
+ * An elegant and customizable accordion card component for React
+ * 
+ * @example
+ * ```tsx
+ * <CardFlip
+ *   cards={[
+ *     { title: "Card 1", details: "Content 1" },
+ *     { title: "Card 2", details: "Content 2" }
+ *   ]}
+ *   containerWidth="80%"
+ *   cardColor="#76B900"
+ * />
+ * ```
  */
 const CardFlip: React.FC<CardFlipProps> = ({ 
     cards = [], 
@@ -68,14 +78,14 @@ const CardFlip: React.FC<CardFlipProps> = ({
     } as React.CSSProperties;
 
     return (
-        <div className={`card-container ${className}`} style={containerStyle}>
+        <div className={`${styles.cardContainer} ${className}`} style={containerStyle}>
             {cards.map((card, index) => (
                 <div 
                     key={index} 
-                    className={`card ${activeCard === index ? 'active' : ''}`}
+                    className={`${styles.card} ${activeCard === index ? styles.active : ''}`}
                 >
-                    <div className="card-inner">
-                        <div className="card-front">
+                    <div className={styles.cardInner}>
+                        <div className={styles.cardFront}>
                             <h2>{card.title}</h2>
                             <button onClick={() => handleButtonClick(index)}>
                                 {activeCard === index ? '−' : '+'}
@@ -83,7 +93,7 @@ const CardFlip: React.FC<CardFlipProps> = ({
                         </div>
                     </div>
                     {activeCard === index && (
-                        <div className="card-details">
+                        <div className={styles.cardDetails}>
                             <p>{card.details}</p>
                         </div>
                     )}
