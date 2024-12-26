@@ -210,7 +210,7 @@ export const CardFlipDemo: React.FC = () => {
         />
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+      <div className="space-y-8">
         <div className="bg-gray-50 rounded-lg p-6">
           <div className="flex justify-between items-center mb-4">
             <h3 className="text-xl font-semibold">{t.settings.title}</h3>
@@ -222,13 +222,13 @@ export const CardFlipDemo: React.FC = () => {
             </button>
           </div>
 
-          <div className="space-y-4">
+          <div className="grid grid-cols-4 gap-4">
             {Object.entries(settings).map(([key, value]) => {
               const settingKey = key as keyof Settings;
               if (settingKey === 'cardCount') {
                 return (
                   <label key={key} className="block">
-                    <span className="block mb-1">{t.settings[settingKey]}</span>
+                    <span className="block mb-1 text-sm font-medium">{t.settings[settingKey]}</span>
                     <input
                       type="range"
                       min="1"
@@ -237,7 +237,7 @@ export const CardFlipDemo: React.FC = () => {
                       onChange={e => handleSettingChange(settingKey, parseInt(e.target.value))}
                       className="w-full"
                     />
-                    <span className="text-sm text-gray-500">{value}</span>
+                    <span className="text-xs text-gray-500">{value}</span>
                   </label>
                 );
               }
@@ -245,12 +245,12 @@ export const CardFlipDemo: React.FC = () => {
               if (settingKey.includes('Color')) {
                 return (
                   <label key={key} className="block">
-                    <span className="block mb-1">{t.settings[settingKey]}</span>
+                    <span className="block mb-1 text-sm font-medium">{t.settings[settingKey]}</span>
                     <input
                       type="color"
                       value={value as string}
                       onChange={e => handleSettingChange(settingKey, e.target.value)}
-                      className="w-full h-10 rounded"
+                      className="w-full h-8 rounded"
                     />
                   </label>
                 );
@@ -259,7 +259,7 @@ export const CardFlipDemo: React.FC = () => {
               if (settingKey === 'animationDuration') {
                 return (
                   <label key={key} className="block">
-                    <span className="block mb-1">{t.settings[settingKey]}</span>
+                    <span className="block mb-1 text-sm font-medium">{t.settings[settingKey]}</span>
                     <input
                       type="range"
                       min="0.1"
@@ -269,24 +269,24 @@ export const CardFlipDemo: React.FC = () => {
                       onChange={e => handleSettingChange(settingKey, parseFloat(e.target.value))}
                       className="w-full"
                     />
-                    <span className="text-sm text-gray-500">{value}s</span>
+                    <span className="text-xs text-gray-500">{value}s</span>
                   </label>
                 );
               }
 
               return (
                 <label key={key} className="block">
-                  <span className="block mb-1">{t.settings[settingKey]}</span>
+                  <span className="block mb-1 text-sm font-medium">{t.settings[settingKey]}</span>
                   <input
                     type="range"
-                    min={settingKey.includes('Width') ? "10" : "50"}
-                    max={settingKey.includes('Width') ? "100" : "500"}
+                    min={settingKey === 'collapsedWidth' ? "1" : settingKey === 'containerWidth' ? "10" : "50"}
+                    max={settingKey === 'collapsedWidth' ? "80" : settingKey === 'containerWidth' ? "100" : "500"}
                     value={value}
                     onChange={e => handleSettingChange(settingKey, parseInt(e.target.value))}
                     className="w-full"
                   />
-                  <span className="text-sm text-gray-500">
-                    {value}{settingKey.includes('Width') && !settingKey.includes('collapsed') ? '%' : 'px'}
+                  <span className="text-xs text-gray-500">
+                    {value}{settingKey === 'containerWidth' || settingKey === 'collapsedWidth' ? '%' : 'px'}
                   </span>
                 </label>
               );
