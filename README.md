@@ -13,7 +13,7 @@ An elegant and customizable accordion card component for React.
 ## Installation
 
 ```bash
-npm install react-accordion-cardflip
+npm install react-accordion-cardflip-aus
 ```
 
 ## Usage
@@ -113,7 +113,7 @@ If you have any questions or need help, please open an issue in the GitHub repos
 ## 安装
 
 ```bash
-npm install react-accordion-cardflip
+npm install react-accordion-cardflip-aus
 ```
 
 ## 使用
@@ -213,7 +213,7 @@ MIT © [Ausdata Science]
 ## 安裝
 
 ```bash
-npm install react-accordion-cardflip
+npm install react-accordion-cardflip-aus
 ```
 
 ## 使用
@@ -313,7 +313,7 @@ MIT © [Ausdata Science]
 ## インストール
 
 ```bash
-npm install react-accordion-cardflip
+npm install react-accordion-cardflip-aus
 ```
 
 ## 使用方法
