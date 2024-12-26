@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import styles from './CardFlip.module.css';
+import './CardFlip.css';
 import { CardFlipProps } from './types';
 
 /**
@@ -78,14 +78,14 @@ const CardFlip: React.FC<CardFlipProps> = ({
     } as React.CSSProperties;
 
     return (
-        <div className={`${styles.cardContainer} ${className}`} style={containerStyle}>
+        <div className={`card-container ${className}`} style={containerStyle}>
             {cards.map((card, index) => (
                 <div 
                     key={index} 
-                    className={`${styles.card} ${activeCard === index ? styles.active : ''}`}
+                    className={`card ${activeCard === index ? 'active' : ''}`}
                 >
-                    <div className={styles.cardInner}>
-                        <div className={styles.cardFront}>
+                    <div className="card-inner">
+                        <div className="card-front">
                             <h2>{card.title}</h2>
                             <button onClick={() => handleButtonClick(index)}>
                                 {activeCard === index ? '−' : '+'}
@@ -93,7 +93,7 @@ const CardFlip: React.FC<CardFlipProps> = ({
                         </div>
                     </div>
                     {activeCard === index && (
-                        <div className={styles.cardDetails}>
+                        <div className="card-details">
                             <p>{card.details}</p>
                         </div>
                     )}

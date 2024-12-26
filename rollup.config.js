@@ -1,12 +1,10 @@
-import typescript from 'rollup-plugin-typescript2';
-import postcss from 'rollup-plugin-postcss';
-import resolve from '@rollup/plugin-node-resolve';
-import commonjs from '@rollup/plugin-commonjs';
-import { createRequire } from 'module';
-const require = createRequire(import.meta.url);
+const typescript = require('rollup-plugin-typescript2');
+const postcss = require('rollup-plugin-postcss');
+const resolve = require('@rollup/plugin-node-resolve');
+const commonjs = require('@rollup/plugin-commonjs');
 const pkg = require('./package.json');
 
-export default {
+module.exports = {
   input: 'src/components/CardFlip/index.tsx',
   output: [
     {
@@ -23,21 +21,29 @@ export default {
     },
   ],
   plugins: [
-    resolve(),
+    resolve({
+      extensions: ['.js', '.jsx', '.ts', '.tsx']
+    }),
     commonjs(),
     postcss({
-      modules: true,
+      modules: false,
       extract: true,
       minimize: true,
-      autoModules: true,
-      namedExports: true
+      inject: false
     }),
     typescript({
       tsconfig: 'tsconfig.json',
       clean: true,
+      useTsconfigDeclarationDir: true,
       tsconfigOverride: {
         include: ['src/components/**/*', 'src/types/**/*'],
-        exclude: ['src/app/**/*', 'node_modules', '**/__tests__/*', '**/*.test.tsx']
+        exclude: ['src/app/**/*', 'node_modules', '**/__tests__/*', '**/*.test.tsx'],
+        compilerOptions: {
+          declaration: true,
+          declarationDir: 'dist',
+          target: 'es5',
+          jsx: 'react'
+        }
       }
     }),
   ],

@@ -1,8 +1,16 @@
 src/app
 src/components/CardFlipDemo
+src/lib
 public
 .next
 node_modules
 *.test.tsx
 *.test.ts
-__tests__ 
+__tests__
+.eslintrc*
+jest.config.js
+jest.setup.js
+postcss.config.js
+tailwind.config.*
+tsconfig.json
+.babelrc 
