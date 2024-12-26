@@ -143,7 +143,7 @@ const CardFlipDemo = () => {
     setDemoCards(generateDemoCards(newSettings.cardCount, locale));
   };
 
-  // 监听���言变化，更新卡片内容
+  // 监听语言变化，更新卡片内容
   useEffect(() => {
     setDemoCards(generateDemoCards(settings.cardCount, locale));
   }, [locale, settings.cardCount]);

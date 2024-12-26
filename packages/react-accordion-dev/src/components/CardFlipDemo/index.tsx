@@ -141,7 +141,7 @@ export const CardFlipDemo: React.FC = () => {
   return (
     <div className="w-full p-4">
       <div className="flex justify-between items-center mb-8">
-        <h1 className="text-2xl font-bold">CardFlip Demo</h1>
+        <h1 className="text-2xl font-bold">AccordionCard</h1>
         <div className="flex gap-2">
           <button
             onClick={() => setLocale('en')}

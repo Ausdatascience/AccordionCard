@@ -1,7 +1,8 @@
 {
   "name": "react-accordion-dev",
   "version": "0.1.0",
-  "description": "Development tools for react-accordion-core",
+  "private": true,
+  "description": "Development tools and demo for react-accordion-core",
   "type": "module",
   "main": "dist/index.js",
   "module": "dist/index.esm.js",
